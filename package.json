@@ -1,0 +1,47 @@
+{
+  "name": "@positlearn/shared",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": [
+    "front",
+    "backend"
+  ],
+  "type": "module",
+  "scripts": {
+    "dev:frontend": "cd front && yarn dev",
+    "dev:backend": "cd backend && yarn server",
+    "dev:pythonbackend": "cd backend/python && python app.py",
+    "dev": "concurrently \"yarn dev:frontend\" \"yarn dev:backend\" \"yarn dev:pythonbackend\"",
+    "build:frontend": "cd front && yarn build",
+    "lint:frontend": "cd front && yarn lint",
+    "preview:frontend": "cd front && yarn preview"
+  },
+  "dependencies": {
+    "@clerk/themes": "^2.2.20",
+    "@prisma/client": "^6.3.1",
+    "axios": "^1.8.1",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "jspdf": "^3.0.1",
+    "pdf-lib": "^1.17.1",
+    "prisma": "^6.3.1",
+    "react-confetti": "^6.4.0",
+    "react-instantsearch-dom": "^6.40.4",
+    "sharp": "^0.33.5",
+    "typesense": "^2.0.3"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.17.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "concurrently": "^9.1.2",
+    "eslint": "^9.17.0",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "eslint-plugin-react-refresh": "^0.4.16",
+    "globals": "^15.14.0",
+    "nodemon": "^2.0.22",
+    "typescript": "~5.6.2",
+    "typescript-eslint": "^8.18.2",
+    "vite": "^6.0.5"
+  },
+  "packageManager": "yarn@1.22.22"
+}

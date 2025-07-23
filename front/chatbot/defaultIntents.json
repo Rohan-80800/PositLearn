@@ -1,0 +1,24 @@
+[
+    {
+      "name": "DefaultGreeting",
+      "training_phrases": [
+        "hi",
+        "hello",
+        "hey",
+        "good morning",
+        "good evening"
+      ],
+      "response": "Hello! I'm your assistant. How can I help you today?"
+    },
+    {
+      "name": "DefaultHelp",
+      "training_phrases": [
+        "help",
+        "can you help me?",
+        "what can you do?",
+        "how can you assist me?",
+        "i need assistance"
+      ],
+      "response": "I can help you with your learning paths, project information, and FAQs. Just ask!"
+    }
+  ]

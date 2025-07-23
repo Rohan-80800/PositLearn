@@ -1,0 +1,264 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model users {
+  clerk_id            String        @id @db.VarChar(50)
+  email               String        @db.VarChar(255)
+  user_image          String?
+  first_name          String        @db.VarChar(50)
+  last_name           String        @db.VarChar(50)
+  role                Role          @default(EMPLOYEE)
+  achievements        Json?
+  team_history        Json?
+  is_active           Boolean       @default(true)
+  created_at          DateTime      @default(now())
+  updated_at          DateTime      @updatedAt
+  learning_time       Int?
+  badges              Json?
+  module_completed    Json?
+  current_learning    Json?
+  notebook_data       Json?
+  progress_percentage Json?
+  quiz_results        Json?
+  quiz_history        Json?
+  certificates        Json?
+  start_date          Json?
+  end_date            Json?
+  teams               teams[]
+  discussions         discussions[]
+  comments            comments[]
+  replies             replies[]
+  notifications       notifications[]
+}
+
+enum Role {
+  INTERN
+  EMPLOYEE
+  MANAGER
+  ADMIN
+}
+
+model teams {
+  id              Int        @id @default(autoincrement())
+  team_name       String     @db.VarChar(50)
+  description     String     @db.Text
+  created_at      DateTime   @default(now())
+  updated_at      DateTime   @updatedAt
+  is_active       Boolean    @default(false)
+  team_category   Category   @default(Interns)
+  team_icon       String?
+  project_history Json?
+  users           users[]
+  projects        projects[]
+}
+
+enum Category {
+  Interns
+  Employee
+}
+
+model validators {
+  id          Int        @id @default(autoincrement())
+  name        String     @db.VarChar(100)
+  designation String     @db.VarChar(100)
+  signature   String?
+  created_at  DateTime   @default(now())
+  updated_at  DateTime   @updatedAt
+  projects    projects[]
+}
+
+model projects {
+  id                     Int                      @id @default(autoincrement())
+  project_name           String                   @db.VarChar(255)
+  progress               Int?
+  project_type           project_type?            @default(WEB)
+  description            Json?
+  github_repository      String?                  @db.VarChar(255)
+  start_date             DateTime                 @default(now())
+  end_date               DateTime?
+  is_active              Boolean                  @default(true)
+  created_at             DateTime                 @default(now())
+  updated_at             DateTime                 @updatedAt
+  priority               Priority                 @default(HIGH)
+  logo_url               String?                  @default("")
+  project_for            String?                  @default("")
+  validator_id           Int?
+  validator              validators?              @relation(fields: [validator_id], references: [id])
+  teams                  teams[]
+  project_recent_changes project_recent_changes[]
+  discussions            discussions[]
+  quizzes                quizzes[]
+  contents               contents[]
+  modules                modules[]
+  badges                 badges[]
+
+  @@index([validator_id])
+}
+
+enum Priority {
+  HIGH
+  MEDIUM
+  LOW
+}
+
+enum project_type {
+  WEB
+  MOBILE
+  DESKTOP
+}
+
+enum Status {
+  IN_PROGRESS
+  COMPLETED
+  PENDING
+}
+
+model modules {
+  id          Int       @id @default(autoincrement())
+  title       String    @db.VarChar(255)
+  description String?   @db.Text
+  video       Json
+  file        Json
+  project     projects  @relation(fields: [project_id], references: [id], onDelete: Cascade)
+  project_id  Int
+  quizzes     quizzes[]
+}
+
+model contents {
+  id            Int      @id @default(autoincrement())
+  resource_type Resource
+  title         String   @db.VarChar(50)
+  description   String?  @db.Text
+  resource      String   @db.Text
+  created_at    DateTime @default(now())
+  updated_at    DateTime @updatedAt
+  project       projects? @relation(fields: [project_id], references: [id])
+  project_id    Int?
+
+  @@index([project_id])
+}
+
+enum Resource {
+  CHEATSHEET
+  KT_SESSION
+}
+
+model project_recent_changes {
+  id                 Int      @id @default(autoincrement())
+  project_id         Int
+  change_title       String
+  change_description String
+  change_date        DateTime @default(now())
+  project            projects @relation(fields: [project_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  @@index([project_id])
+}
+
+model discussions {
+  id          Int        @id @default(autoincrement())
+  user_id     String     @db.VarChar(50)
+  project_id  Int
+  title       String     @db.VarChar(255)
+  description String     @db.Text
+  image_urls  String[]   @default([])
+  created_at  DateTime   @default(now())
+  updated_at  DateTime   @updatedAt
+  user        users      @relation(fields: [user_id], references: [clerk_id])
+  project     projects   @relation(fields: [project_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  comments    comments[]
+
+  @@index(user_id)
+  @@index(project_id)
+}
+
+model comments {
+  id            Int         @id @default(autoincrement())
+  discussion_id Int
+  user_id       String      @db.VarChar(50)
+  comment_text  String      @db.Text
+  created_at    DateTime    @default(now())
+  updated_at    DateTime    @updatedAt
+  discussion    discussions @relation(fields: [discussion_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  user          users       @relation(fields: [user_id], references: [clerk_id], onDelete: Cascade, onUpdate: Cascade)
+  replies       replies[]
+
+  @@index(discussion_id)
+  @@index(user_id)
+}
+
+model replies {
+  id         Int      @id @default(autoincrement())
+  comment_id Int
+  user_id    String   @db.VarChar(50)
+  reply_text String   @db.Text
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  comment    comments @relation(fields: [comment_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  user       users    @relation(fields: [user_id], references: [clerk_id], onDelete: Cascade, onUpdate: Cascade)
+
+  @@index(comment_id)
+  @@index(user_id)
+}
+
+model quizzes {
+  id           Int      @id @default(autoincrement())
+  project_id   Int
+  module_id    Int?
+  video_ids    String[]   @default([])
+  title        String     @db.VarChar(100)
+  quiz_content Json
+  total_points Int
+  created_at   DateTime @default(now())
+  updated_at   DateTime @updatedAt
+  level        level    @default(EASY)
+  project      projects @relation(fields: [project_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  module       modules? @relation(fields: [module_id], references: [id], onDelete: SetNull, onUpdate: Cascade)
+
+  @@index([project_id])
+  @@index([module_id])
+}
+
+enum QuizStatus {
+  PENDING
+  COMPLETED
+  FAILED
+  PASSED
+}
+
+enum level {
+  EASY
+  MEDIUM
+  HARD
+}
+
+model badges {
+  id                  Int      @id @default(autoincrement())
+  project_id          Int
+  name                String
+  description         String?
+  progress_percentage Int?
+  image               String?
+  is_special          Boolean  @default(false)
+  project             projects @relation(fields: [project_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+}
+
+model notifications {
+  id         Int      @id @default(autoincrement())
+  user_id    String   @db.VarChar(50)
+  title      String   @db.VarChar(255)
+  message    String   @db.Text
+  metadata   Json?    
+  created_at DateTime @default(now())
+  expires_at DateTime
+  read       Boolean  @default(false) 
+  user       users    @relation(fields: [user_id], references: [clerk_id], onDelete: Cascade)
+
+  @@index([user_id])
+  @@index([expires_at])
+}

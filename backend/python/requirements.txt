@@ -1,0 +1,9 @@
+flask==3.0.0
+flask-cors==4.0.0
+youtube-transcript-api==0.6.2
+g4f==0.5.2.2
+gunicorn==23.0.0
+requests
+google-api-python-client==2.148.0
+cffi>=1.15.1
+python-dotenv>=1.0.0

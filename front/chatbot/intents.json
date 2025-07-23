@@ -1,0 +1,183 @@
+[
+    {
+      "name": "ShowLearningPaths",
+      "training_phrases": [
+        "Show me my learning path",
+        "What courses should I do?",
+        "List my learning paths",
+        "What do I need to learn?",
+        "What is assigned to me?"
+      ],
+      "response": "You can see your learning path on project section."
+    },
+    {
+      "name": "CheckVideoProgress",
+      "training_phrases": [
+        "What is my progress in the video?",
+        "How much have I completed?",
+        "Show video progress",
+        "Video completion status"
+      ],
+      "response": "You have completed 60% of the video. You can resume from where you left off or replay the video."
+    },
+    {
+      "name": "SubmitDoubt",
+      "training_phrases": [
+        "I have a question",
+        "Post a doubt",
+        "I need help with this concept",
+        "Ask something",
+        "Submit doubt"
+      ],
+      "response": "Please type your doubt below, and we’ll notify the project mentor or relevant expert."
+    },
+    {
+      "name": "GetCertificateStatus",
+      "training_phrases": [
+        "Have I earned a certificate?",
+        "Did I complete the course?",
+        "Check certificate status",
+        "Do I get a certificate for this?"
+      ],
+      "response": "Yes, you have earned a certificate for this project. You can view and download it from your dashboard."
+    },
+    {
+      "name": "HowToEarnBadges",
+      "training_phrases": [
+        "How do I earn badges?",
+        "What are badges for?",
+        "Explain badge system",
+        "Ways to collect badges"
+      ],
+      "response": "Badges are awarded based on milestones like completing courses and scoring well in quizzes."
+    },
+    {
+      "name": "ShowMyBadges",
+      "training_phrases": [
+        "Show my badges",
+        "Which badges have I earned?",
+        "List my achievements"
+      ],
+      "response": "You can see your earned badges in badges section under the achivement option."
+    },
+    {
+      "name": "ViewLeaderboard",
+      "training_phrases": [
+        "Show the leaderboard",
+        "Top performers",
+        "Where do I rank?",
+        "Display leaderboard"
+      ],
+      "response": "No there is no any feature of check performance"
+    },
+    {
+      "name": "TakeQuiz",
+      "training_phrases": [
+        "I want to take a quiz",
+        "Start quiz",
+        "Quiz me",
+        "Test my knowledge"
+      ],
+      "response": "You need to first complete all the related video modules then you are allowed to give quiz"
+    },
+    {
+      "name": "GetDiscussionSummary",
+      "training_phrases": [
+        "Summarize this discussion",
+        "What’s this thread about?",
+        "Give me a quick summary"
+      ],
+      "response": "Comming Soon..."
+    },
+    {
+      "name": "ViewMyProgress",
+      "training_phrases": [
+        "Show my learning progress",
+        "How far am I in the course?",
+        "Progress report",
+        "Learning progress status"
+      ],
+      "response": "Check your progress directly on the learning section."
+    },
+    {
+      "name": "WhatIsPositLearn",
+      "training_phrases": [
+        "What is PositLearn?",
+        "Can you explain what PositLearn is?",
+        "Tell me about this platform"
+      ],
+      "response": "PositLearn is an internal LMS (Learning Management System) platform designed for interns and employees to upskill through structured learning paths, courses, quizzes, discussions, and certification."
+    },
+    {
+      "name": "IsPositLearnFree",
+      "training_phrases": [
+        "Is PositLearn free to use?",
+        "Do I need to pay to access PositLearn?",
+        "Are the courses on PositLearn paid?"
+      ],
+      "response": "Yes, PositLearn is completely free for all assigned interns and employees. All learning materials, quizzes, and certificates are included at no cost."
+    },
+    {
+      "name": "ContactSupport",
+      "training_phrases": [
+        "How can I contact support?",
+        "I need help with the platform",
+        "Who do I reach out to for issues?"
+      ],
+      "response": "You can reach our support team by clicking the 'Help' icon on your dashboard or emailing support@positlearn.com."
+    },
+    {
+      "name": "HowToStartCourse",
+      "training_phrases": [
+        "How do I start a course?",
+        "Where do I begin a course?",
+        "Start learning"
+      ],
+      "response": "To start a course, navigate to your 'Projects' and click on any listed course. The first module will guide you from there."
+    },
+    {
+      "name": "IsPositLearnMobileFriendly",
+      "training_phrases": [
+        "Can I access PositLearn on my mobile?",
+        "Is there a mobile app?",
+        "Does this work on phones?"
+      ],
+      "response": "Yes, PositLearn is mobile responsive. You can use it via your mobile browser. A dedicated mobile app is under development."
+    },
+    {
+      "name": "ResetPassword",
+      "training_phrases": [
+        "I forgot my password",
+        "How do I reset my password?",
+        "Password recovery process"
+      ],
+      "response": "Click on 'Forgot Password' on the login page. You'll receive an email with steps to reset your password securely."
+    },
+    {
+      "name": "HowLongToCompleteCourse",
+      "training_phrases": [
+        "How long does it take to complete a course?",
+        "Course duration",
+        "Time needed to finish a course"
+      ],
+      "response": "Course duration varies, but most are designed to be completed within 1–2 weeks. You can check the estimated time on each course page."
+    },
+    {
+      "name": "DoesProgressSync",
+      "training_phrases": [
+        "Will my progress be saved automatically?",
+        "Do I need to save my progress?",
+        "Auto save feature"
+      ],
+      "response": "Yes, your progress is saved automatically in real time. You can continue from where you left off anytime."
+    },
+    {
+      "name": "MultipleCoursesAtOnce",
+      "training_phrases": [
+        "Can I take multiple courses at the same time?",
+        "Enroll in more than one course",
+        "Parallel learning"
+      ],
+      "response": "Yes, you can enroll in and work on multiple courses simultaneously. Your progress is tracked separately for each."
+    }
+  ]
